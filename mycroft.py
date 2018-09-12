@@ -20,7 +20,8 @@ def drop_knowledge():
                          mycroft_config.summaries_dir + '. Script exited.')
             exit()
 
-        summary_html = markdown(summary_md)
+        summary_html = markdown(summary_md, extensions=[
+                                'markdown.extensions.tables'])
         email_msg = _compose_email_msg(summary_html)
         _send_msg(email_msg)
     except FileNotFoundError:
